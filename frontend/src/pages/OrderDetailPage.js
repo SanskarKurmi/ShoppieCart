@@ -183,7 +183,7 @@ export default function OrderDetailPage() {
       )}
 
       {/* Actions */}
-      <div style={{ display: "flex", gap: 10 }} className="animate-fadeUp" style={{ animationDelay: "0.2s" }}>
+      <div style={{ display: "flex", gap: 10, animationDelay: "0.2s" }} className="animate-fadeUp">
         {canPay && (
           <button className="btn btn-primary btn-lg" onClick={payNow} disabled={paying}>
             {paying ? (

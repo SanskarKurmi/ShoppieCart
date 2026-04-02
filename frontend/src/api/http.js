@@ -18,7 +18,7 @@ export async function apiFetch(path, { token, ...options } = {}) {
   try {
     payload = await res.json();
   } catch {
-    // ignore (non-json response)
+    // ignore
   }
 
   if (!res.ok) {
@@ -37,7 +37,7 @@ export async function apiFetch(path, { token, ...options } = {}) {
     throw err;
   }
 
-  // Backend standard: { success:true, data: ... }
+  // Backend standard
   return payload?.data ?? payload;
 }
 

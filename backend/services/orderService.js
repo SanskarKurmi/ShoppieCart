@@ -1,8 +1,8 @@
 const pool = require("../config/db");
 
 // Allowed order status transitions
-// pending -> paid | cancelled
-// paid    -> shipped | cancelled
+// pending -> paid/cancelled
+// paid    -> shipped/cancelled
 // shipped -> delivered
 const isValidStatusTransition = (current, next) => {
   const allowed = {

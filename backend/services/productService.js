@@ -43,7 +43,7 @@ async function getAllProducts({
 
   const offset = (page - 1) * limit;
 
-  // ---------- WHERE ----------
+  //WHERE
   let baseWhere = `
     WHERE p.status = 1 AND c.status = 1
   `;
@@ -58,7 +58,7 @@ async function getAllProducts({
     }
   }
 
-  // ---------- COUNT ----------
+  //COUNT
   const countQuery = `
     SELECT COUNT(*) AS total
     FROM products p
@@ -69,7 +69,7 @@ async function getAllProducts({
   const [countRows] = await pool.execute(countQuery, filterParams);
   const total = countRows[0]?.total || 0;
 
-  // ---------- DATA ----------
+  //DATA
   let dataQuery = `
     SELECT 
       p.product_id,

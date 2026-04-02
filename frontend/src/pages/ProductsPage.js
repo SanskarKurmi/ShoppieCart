@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { productApi, cartApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
 
-/* ── Curated product image map using Unsplash ──────────── */
+/* Curated product image map using Unsplash */
 const PRODUCT_IMAGES = {
   // Electronics
   "laptop":       "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80",
@@ -93,7 +93,7 @@ function StarDisplay({ rating }) {
   );
 }
 
-/* ── Skeleton card ──────────────────────────────────────── */
+/*Skeleton card*/
 function SkeletonCard() {
   return (
     <div className="product-card" style={{ pointerEvents: "none" }}>
@@ -111,7 +111,7 @@ function SkeletonCard() {
   );
 }
 
-/* ── Product Card ───────────────────────────────────────── */
+/*Product Card*/
 function ProductCard({ product, onAdd, adding }) {
   const img    = getProductImage(product);
   const rating = getStars(product.price);
@@ -163,13 +163,13 @@ function ProductCard({ product, onAdd, adding }) {
   );
 }
 
-/* ── Toast ──────────────────────────────────────────────── */
+/*Toast*/
 function Toast({ message, type }) {
   if (!message) return null;
   return <div className={`toast-bar ${type}`}>{message}</div>;
 }
 
-/* ── Main Page ──────────────────────────────────────────── */
+/*Main Page*/
 export default function ProductsPage() {
   const { token, isAuthed } = useAuth();
   const [page, setPage]       = useState(1);

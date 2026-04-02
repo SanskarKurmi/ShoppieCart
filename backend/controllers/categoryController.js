@@ -40,7 +40,7 @@ exports.getCategories = async (req, res) => {
   }
 };
 
-// GET BY ID (NEW)
+// GET BY ID 
 exports.getCategoryById = async (req, res) => {
   try {
     const { id } = req.params;

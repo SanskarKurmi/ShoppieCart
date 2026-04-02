@@ -12,7 +12,7 @@ const isValidUrl = (url) => {
   }
 };
 
-// CREATE
+// CREATE product
 exports.createProduct = async (req, res) => {
   try {
     let { product_name, description, price, stock, image_url, category_id } =
