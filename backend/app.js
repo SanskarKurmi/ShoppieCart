@@ -12,7 +12,13 @@ const errorMiddleware = require("./middleware/errorMiddleware");
 const responseMiddleware = require("./middleware/responseMiddleware");
 
 // middlewares
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://shoppiecart.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(responseMiddleware);
 
