@@ -29,6 +29,7 @@
       ">0.2%",
       "not dead",
       "not opengl",
+      "not op_mini all",
       "not safari < 10",
       "not android < 60",
       "not chrome < 60",
@@ -43,3 +44,4 @@
     ]
   }
 }
+
