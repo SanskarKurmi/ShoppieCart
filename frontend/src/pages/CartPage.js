@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { cartApi, orderApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function CartPage() {
   const [error, setError]       = useState("");
   const [cart, setCart]         = useState(null);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -22,9 +22,9 @@ export default function CartPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); }, [load]);
 
   const total = useMemo(() => {
     const items = cart?.items || [];

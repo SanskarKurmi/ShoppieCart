@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { orderApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
 
@@ -20,7 +20,7 @@ export default function AdminOrdersPage() {
   const [statusFilter, setStatusFilter]   = useState("");
   const [sort, setSort]                   = useState("desc");
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -36,9 +36,9 @@ export default function AdminOrdersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token, statusFilter, sort]);
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [statusFilter, sort]);
+  useEffect(() => { load(); }, [load]);
 
   const updateStatus = async (order_id, nextStatus) => {
     setError("");

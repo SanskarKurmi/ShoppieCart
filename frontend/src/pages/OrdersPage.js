@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { orderApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
@@ -18,7 +18,7 @@ export default function OrdersPage() {
   const [error, setError]     = useState("");
   const [orders, setOrders]   = useState([]);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -29,9 +29,9 @@ export default function OrdersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, []);
+  useEffect(() => { load(); }, [load]);
 
   return (
     <div className="main-content">

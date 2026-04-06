@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { productApi, cartApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
 
@@ -190,7 +190,7 @@ export default function ProductsPage() {
     setTimeout(() => setToast({ msg: "", type: "" }), 2000);
   };
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -202,13 +202,12 @@ export default function ProductsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, limit, sort]);
 
   useEffect(() => {
     if (process.env.NODE_ENV === "test") return;
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, sort]);
+  }, [load]);
 
   const addToCart = async (product_id) => {
     if (!isAuthed) {

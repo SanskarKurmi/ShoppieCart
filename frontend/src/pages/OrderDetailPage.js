@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { orderApi, paymentApi } from "../api/endpoints";
 import { useAuth } from "../auth/AuthContext";
@@ -23,7 +23,7 @@ export default function OrderDetailPage() {
   const [paying, setPaying]         = useState(false);
   const [cancelling, setCancelling] = useState(false);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -34,9 +34,9 @@ export default function OrderDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token, id]);
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [id]);
+  useEffect(() => { load(); }, [load]);
 
   const cancelOrder = async () => {
     setCancelling(true);
